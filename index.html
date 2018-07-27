@@ -1,0 +1,93 @@
+<!-- 7/20/18 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>   
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">         
+<h1>Random Generator</h1>
+    </div>
+    </div>
+<div class="row"> 
+<div class="col-md-6">
+<input id="input" class="form-control" type="text" value="Enter your name" onfocus="this.value=''">
+<button onclick=addName()>Add name</button>
+</div>
+<div class="col-md-6">
+<input id="deleteName" class="form-control" type="text" value="Enter a name to delete" onfocus="this.value=''">
+<button onclick=clearName()>Delete name</button>
+<button onclick=clearArr()>Clear all names</button>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-md-12">
+<button class="specialButton" onclick=randomName()>Random name</button>
+<button class="specialButton" onclick=viewNames()>View added names</button>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+    <p id="write"></p>
+    </div>
+</div>
+</div>
+<div class="footer">
+    <p>Made by <a href="https://github.com/BoreMore" target="_blank">BoreMore</a></p>
+</div>
+<script>
+    var names = [];
+    var i;
+    var j;
+
+    function addName() {
+        names.push(document.getElementById("input").value);
+        document.getElementById("write").innerHTML = "Name added";
+        setTimeout(function(){
+            document.getElementById("write").innerHTML = "";
+        }, 1000)
+    }
+    function randomName() {
+        i = Math.floor(Math.random() * names.length);
+        document.getElementById("write").innerHTML = names[i];
+    }
+    function viewNames() {
+        document.getElementById("write").innerHTML = names;
+        setTimeout(function() {
+            document.getElementById("write").innerHTML = "";
+        },2000);
+    }
+    function clearArr() {
+        names = [];
+        i = undefined;
+        document.getElementById("write").innerHTML = "Names cleared"
+        setTimeout(function(){
+            document.getElementById("write").innerHTML = "";
+        },1000)
+    }
+    function clearName() {
+       j = names.indexOf(document.getElementById("deleteName").value);
+       if (j === -1) {
+           document.getElementById("write").innerHTML = "Name not found, please try again"
+           setTimeout(function() {
+               document.getElementById("write").innerHTML = "";
+           },1000)
+       } else {
+           names.splice(j, 1);
+           document.getElementById("write").innerHTML = "Name deleted";
+           setTimeout(function(){
+               document.getElementById("write").innerHTML = "";
+           },1000)
+       }
+    }
+
+
+</script>
+</body>
+</html>
